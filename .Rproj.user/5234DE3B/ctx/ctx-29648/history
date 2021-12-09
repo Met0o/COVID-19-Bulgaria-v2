@@ -1,0 +1,165 @@
+taskscheduleR:::taskschedulerAddin()
+taskscheduleR:::taskschedulerAddin()
+getwd()
+taskscheduler_create(taskname = "COVID", rscript = "C://R/COVID/Updates.R",
+schedule = "DAILY", starttime = "18:00", startdate = format(Sys.Date(), "%m/%d/%Y"))
+library(taskscheduleR)
+taskscheduler_create(taskname = "COVID", rscript = "C://R/COVID/Updates.R",
+schedule = "DAILY", starttime = "18:00", startdate = format(Sys.Date(), "%m/%d/%Y"))
+??deployApp
+library(coronavirus)
+#------------------ Data ------------------
+df <- coronavirus %>%
+dplyr::filter(country == "Bulgaria") %>%
+dplyr::group_by(country, type) %>%
+dplyr::summarise(total = sum(cases)) %>%
+tidyr::pivot_wider(
+names_from = type,
+values_from = total
+) %>%
+dplyr::arrange(-confirmed) %>%
+dplyr::ungroup() %>%
+dplyr::mutate(country = dplyr::if_else(country == "North Macedonia", "N.Macedonia", country)) %>%
+dplyr::mutate(country = trimws(country)) %>%
+dplyr::mutate(country = factor(country, levels = country))
+library(tidyverse)
+library(coronavirus)
+library(flexdashboard)
+library(shiny)
+library(plotly)
+`%>%` <- magrittr::`%>%`
+#------------------ Data ------------------
+df <- coronavirus %>%
+dplyr::filter(country == "Bulgaria") %>%
+dplyr::group_by(country, type) %>%
+dplyr::summarise(total = sum(cases)) %>%
+tidyr::pivot_wider(
+names_from = type,
+values_from = total
+) %>%
+dplyr::arrange(-confirmed) %>%
+dplyr::ungroup() %>%
+dplyr::mutate(country = dplyr::if_else(country == "North Macedonia", "N.Macedonia", country)) %>%
+dplyr::mutate(country = trimws(country)) %>%
+dplyr::mutate(country = factor(country, levels = country))
+df_daily <- coronavirus %>%
+dplyr::filter(country == "Bulgaria") %>%
+dplyr::group_by(date, type) %>%
+dplyr::summarise(total = sum(cases, na.rm = TRUE)) %>%
+tidyr::pivot_wider(
+names_from = type,
+values_from = total
+) %>%
+dplyr::arrange(date) %>%
+dplyr::ungroup() %>%
+dplyr::mutate(active = confirmed - death) %>%
+dplyr::mutate(
+confirmed_cum = cumsum(confirmed),
+death_cum = cumsum(death),
+active_cum = cumsum(active)
+)
+View(df_daily)
+View(df)
+df_daily
+daily_confirmed_deaths <- coronavirus %>%
+dplyr::filter(type == "death") %>%
+dplyr::filter(date >= "2020-03-07") %>%
+dplyr::mutate(country = country) %>%
+dplyr::group_by(date, country) %>%
+dplyr::summarise(total = sum(cases)) %>%
+dplyr::ungroup() %>%
+tidyr::pivot_wider(names_from = country, values_from = total)
+daily_confirmed_deaths
+coronavirus
+datadf <- coronavirus
+View(datadf)
+View(datadf)
+covid19_vaccine <- covid19_vaccine_temp <-  NULL
+tryCatch(
+covid19_vaccine_temp <- readr::read_csv(file = url,
+col_types = readr::cols(Date = readr::col_date(format = "%Y-%m-%d"),
+Doses_admin = readr::col_number(),
+People_partially_vaccinated = readr::col_number(),
+People_fully_vaccinated = readr::col_number(),
+Report_Date_String = readr::col_date(format = "%Y-%m-%d"),
+UID = readr::col_number(),
+Province_State = readr::col_character())) %>%
+as.data.frame(),
+error = function(c) base::message(c)
+)
+url <- "https://raw.githubusercontent.com/govex/COVID-19/master/data_tables/vaccine_data/global_data/time_series_covid19_vaccine_global.csv"
+branch <- system(command = "git rev-parse --abbrev-ref HEAD", intern = TRUE)
+covid19_vaccine <- covid19_vaccine_temp <-  NULL
+tryCatch(
+covid19_vaccine_temp <- readr::read_csv(file = url,
+col_types = readr::cols(Date = readr::col_date(format = "%Y-%m-%d"),
+Doses_admin = readr::col_number(),
+People_partially_vaccinated = readr::col_number(),
+People_fully_vaccinated = readr::col_number(),
+Report_Date_String = readr::col_date(format = "%Y-%m-%d"),
+UID = readr::col_number(),
+Province_State = readr::col_character())) %>%
+as.data.frame(),
+error = function(c) base::message(c)
+)
+names(covid19_vaccine_temp) <- tolower(names(covid19_vaccine_temp))
+View(covid19_vaccine_temp)
+tbl_info(covid19_vaccine_temp)
+`%>%` <- magrittr::`%>%`
+# Get the table information
+tbl_info <- function(input){
+obj.name <- base::deparse(base::substitute(input))
+input <- as.data.frame(input)
+dup <- sum(duplicated(input))
+df <- data.frame(cols_name = names(input),
+cols_class = lapply(input, class) %>% unlist,
+cols_NAs = lapply(names(input), function(i){sum(is.na(input[, i]))}) %>% unlist,
+cols_min = lapply(names(input), function(i){if(is.numeric(input[, i])){
+min(input[, i], na.rm = TRUE)
+} else {
+NA
+}}) %>% unlist,
+cols_max = lapply(names(input), function(i){if(is.numeric(input[, i])){
+max(input[, i], na.rm = TRUE)
+} else {
+NA
+}}) %>% unlist,
+cols_unique = lapply(names(input), function(i){length(unique(input[, i]))}) %>% unlist,
+stringsAsFactors = FALSE)
+rownames(df) <- NULL
+t <- htmltools::div(class = "tbl-info",
+htmltools::div(class = "tbl-info",
+htmltools::h4(class = "tbl-info",
+paste("Table Info - ", obj.name)),
+paste("Number of  columns:", ncol(input)),
+htmltools::br(),
+paste("Number of  rows:", nrow(input)),
+htmltools::br(),
+paste("Duplicated rows:", dup)
+),
+reactable::reactable(df, defaultPageSize = nrow(df)))
+return(t)
+}
+tbl_info(covid19_vaccine_temp)
+View(covid19_vaccine_temp)
+covid19_vaccine_temp %>%
+filter(country_region == "Bulgaria")
+bg_vac_df <- covid19_vaccine_temp %>%
+filter(country_region == "Bulgaria")
+bg_vac_df
+View(bg_vac_df)
+bg_vac_df
+bg_vac_df %>%
+select(people_fully_vaccinated, date, country_region) %>%
+#group_by(people_fully_vaccinated ) %>%
+summarise(vaccination = sum(people_fully_vaccinated ), .groups = "drop")
+bg_vac_df %>%
+select(people_fully_vaccinated, date, country_region) %>%
+#group_by(people_fully_vaccinated ) %>%
+summarise(vaccination = sum(people_fully_vaccinated ), .groups = "drop")
+library(remotes)
+devtools::install_github("RamiKrispin/coronavirus",
+upgrade = c("always"),
+quiet   = FALSE,
+force   = TRUE
+)

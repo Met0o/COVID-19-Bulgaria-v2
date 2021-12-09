@@ -1,0 +1,2 @@
+memory profiling: GC profiling: line profiling: sample.interval=10000
+:1859251:11696331:108398584:0:"Rprof" "profvis" 
