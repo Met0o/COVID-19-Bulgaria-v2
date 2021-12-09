@@ -148,13 +148,6 @@ files <- c("COVID-19-Bulgaria-v2.Rproj",
 
 library(rsconnect)
 
-options(repos = c(CRAN = "https://cran.rstudio.com"))
-
-rsconnect::setAccountInfo(name   = 'metodisimeonov', 
-                          token  = '1BE9B4F34D9D0DB8C97103E2BEE216C3', 
-                          secret = 'KHIijRas7OmaDfpW2Cj4VL+WCJxunLFnSUJgRQN3'
-)
-
 deployApp(appDir   = "C://R/COVID",
           account  = "metodisimeonov",
           upload   = TRUE,
