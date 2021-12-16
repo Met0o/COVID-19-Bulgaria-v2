@@ -137,7 +137,7 @@ About
 
 This dashboard provides an overview of the Coronavirus (COVID-19 / SARS-CoV-2) epidemic for Bulgaria and its surrounding countries. 
 
-It is built with R using the R Markdown and flexdashboard framework and was adapted from the dashboard of [**Rami Krispin**](https://ramikrispin.github.io){target="_blank"}, courtesy of [**Antoine Soetewey**](https://github.com/AntoineSoetewey){target="_blank"}.
+It is built with R using R Markdown, flexdashboard, and Shiny framework. The first version of the dashboard was adapted from [**Rami Krispin**](https://ramikrispin.github.io){target="_blank"}, courtesy of [**Antoine Soetewey**](https://github.com/AntoineSoetewey){target="_blank"}.
 
 ***How to use it***
 
@@ -145,7 +145,7 @@ All plots are made with Plotly and thus are interactive. Vaccination / Mortality
 
 Double click to zoom into specific time windows or to select / de-select specific countries from the legend. 
 
-Automatic updates are performed daily at 12:00 PM EET.
+Automatic updates are performed daily at 11:00 AM EET.
 
 ***Packages***
 

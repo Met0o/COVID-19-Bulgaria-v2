@@ -5,7 +5,7 @@ account: metodisimeonov
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5208205
-bundleId: 5349301
+bundleId: 5379467
 url: https://metodisimeonov.shinyapps.io/COVID-19-Bulgaria-v2/
-when: 1639036517.08766
-lastSyncTime: 1639036517.08766
+when: 1639645242.33335
+lastSyncTime: 1639645242.33335
