@@ -14,4 +14,4 @@ File structure and execution logic:
 2. Updates.R       - Script to update the data source package daily, transform and export .rds artifacts for consumption of the web app
 3. taskscheduleR.R - Script to create the automation job on a windows-based machine 
 4. vaccines.R      - Script used to develop vaccination data and plots 
-5. .rds files      - Artifacts required for the web app to render data  
+5. .rds files      - Data artifacts required for the web app  
