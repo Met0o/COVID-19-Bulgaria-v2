@@ -147,6 +147,8 @@ Double click to zoom into specific time windows or to select / de-select specifi
 
 Automatic updates are performed daily at 11:00 AM EET.
 
+Application code including automation and data wrangling scripts can be found on my [***Github***](https://github.com/Met0o/COVID-19-Bulgaria-v2)
+
 ***Packages***
 
 -   Dashboard interface - [***flexdashboard***](https://rmarkdown.rstudio.com/flexdashboard/) and [***Shiny***](https://shiny.rstudio.com/)
