@@ -271,7 +271,7 @@ plot_ly(data = df_daily) %>%
     )
   }
 ) %>% 
-  bindCache(input$data)
+  bindCache(input$x, input$y)
 
 plotlyOutput(outputId = "plotly_3")
 
@@ -348,7 +348,7 @@ daily_confirmed_deaths %>%
     )
   }
 ) %>% 
-  bindCache(input$daily_confirmed_deaths)
+  bindCache(input$x, input$y)
   
 plotlyOutput(outputId = "plotly_2")
   
@@ -426,7 +426,7 @@ daily_confirmed %>%
     )
   }
 ) %>% 
-  bindCache(input$daily_confirmed)
+  bindCache(input$x, input$y)
 
 plotlyOutput(outputId = "plotly_1")
 
@@ -465,7 +465,7 @@ plotlyOutput(outputId = "plotly_4")
 
 ```
 
-Vaccination - Mortality
+Vaccination vs Mortality
 =====================================
 
 ## Column {data-width="400"}

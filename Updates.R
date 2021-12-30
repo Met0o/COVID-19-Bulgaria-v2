@@ -17,60 +17,60 @@ library(gridExtra)
 library(viridis)
 
 df <- coronavirus %>%
-     dplyr::filter(country == "Bulgaria") %>%
-     dplyr::group_by(country, type) %>%
-     dplyr::summarise(total = sum(cases)) %>%
-     tidyr::pivot_wider(
+     filter(country == "Bulgaria") %>%
+     group_by(country, type) %>%
+     summarise(total = sum(cases)) %>%
+     pivot_wider(
          names_from = type,
          values_from = total
      ) %>%
-     dplyr::arrange(-confirmed) %>%
-     dplyr::ungroup() %>%
-     dplyr::mutate(country = dplyr::if_else(country == "North Macedonia", "N.Macedonia", country)) %>%
-     dplyr::mutate(country = trimws(country)) %>%
-     dplyr::mutate(country = factor(country, levels = country))
+     arrange(-confirmed) %>%
+     ungroup() %>%
+     mutate(country = dplyr::if_else(country == "North Macedonia", "N.Macedonia", country)) %>%
+     mutate(country = trimws(country)) %>%
+     mutate(country = factor(country, levels = country))
 
 df_daily <- coronavirus %>%
-     dplyr::filter(country == "Bulgaria") %>%
-     dplyr::group_by(date, type) %>%
-     dplyr::summarise(total = sum(cases, na.rm = TRUE)) %>%
-     tidyr::pivot_wider(
+     filter(country == "Bulgaria") %>%
+     group_by(date, type) %>%
+     summarise(total = sum(cases, na.rm = TRUE)) %>%
+     pivot_wider(
          names_from = type,
          values_from = total
      ) %>%
-     dplyr::arrange(date) %>%
-     dplyr::ungroup() %>%
-     dplyr::mutate(active = confirmed - death) %>%
-     dplyr::mutate(
+     arrange(date) %>%
+     ungroup() %>%
+     mutate(active = confirmed - death) %>%
+     mutate(
          confirmed_cum = cumsum(confirmed),
          death_cum = cumsum(death),
          active_cum = cumsum(active)
      )
 
 daily_confirmed_deaths <- coronavirus %>%
-     dplyr::filter(type == "death") %>%
-     dplyr::filter(date >= "2020-03-07") %>%
-     dplyr::mutate(country = country) %>%
-     dplyr::group_by(date, country) %>%
-     dplyr::summarise(total = sum(cases)) %>%
-     dplyr::ungroup() %>%
-     tidyr::pivot_wider(names_from = country, values_from = total)
+     filter(type == "death") %>%
+     filter(date >= "2020-03-07") %>%
+     mutate(country = country) %>%
+     group_by(date, country) %>%
+     summarise(total = sum(cases)) %>%
+     ungroup() %>%
+     pivot_wider(names_from = country, values_from = total)
 
 daily_confirmed <- coronavirus %>%
-     dplyr::filter(type == "confirmed") %>%
-     dplyr::filter(date >= "2020-03-07") %>%
-     dplyr::mutate(country = country) %>%
-     dplyr::group_by(date, country) %>%
-     dplyr::summarise(total = sum(cases)) %>%
-     dplyr::ungroup() %>%
-     tidyr::pivot_wider(names_from = country, values_from = total)
+     filter(type == "confirmed") %>%
+     filter(date >= "2020-03-07") %>%
+     mutate(country = country) %>%
+     group_by(date, country) %>%
+     summarise(total = sum(cases)) %>%
+     ungroup() %>%
+     pivot_wider(names_from = country, values_from = total)
 
 cv_data_for_plot <- coronavirus %>%
-     dplyr::filter(cases > 0) %>%
-     dplyr::group_by(country, province, lat, long, type) %>%
-     dplyr::summarise(cases = sum(cases)) %>%
-     dplyr::mutate(log_cases = 2 * log(cases)) %>%
-     dplyr::ungroup()
+     filter(cases > 0) %>%
+     group_by(country, province, lat, long, type) %>%
+     summarise(cases = sum(cases)) %>%
+     mutate(log_cases = 2 * log(cases)) %>%
+     ungroup()
 
 cv_data_for_plot.split <- cv_data_for_plot %>% split(cv_data_for_plot$type)
 
@@ -86,7 +86,7 @@ mortality_rate <- coronavirus %>%
   ungroup() %>%
   mutate(confirmed_normal = as.numeric(confirmed) / max(as.numeric(confirmed)))
  
- ############### Vaccination Data  ############### 
+ ############### Vaccination Data ############### 
  
  vac_df <- covid19_vaccine %>% 
          filter(date == max(date),
