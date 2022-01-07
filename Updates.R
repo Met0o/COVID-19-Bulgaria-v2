@@ -124,14 +124,14 @@ joined_df$country <- factor(joined_df$country, levels = joined_df[order(joined_d
 
 # Export Data
 
-write_rds(df, "C://R/COVID/df.rds")
-write_rds(df_daily, "C://R/COVID/df_daily.rds")
-write_rds(daily_confirmed_deaths, "C://R/COVID/daily_confirmed_deaths.rds")
-write_rds(daily_confirmed, "C://R/COVID/daily_confirmed.rds")
-write_rds(cv_data_for_plot, "C://R/COVID/cv_data_for_plot.rds")
-write_rds(cv_data_for_plot.split, "C://R/COVID/cv_data_for_plot.split.rds")
-write_rds(joined_df, "C://R/COVID/joined_df.rds")
-write_rds(mortality_rate, "C://R/COVID/mortality_rate.rds")
+write_rds(df, "E://Dev/R/GitHub/COVID-19-Bulgaria-v2/df.rds")
+write_rds(df_daily, "E://Dev/R/GitHub/COVID-19-Bulgaria-v2/df_daily.rds")
+write_rds(daily_confirmed_deaths, "E://Dev/R/GitHub/COVID-19-Bulgaria-v2/daily_confirmed_deaths.rds")
+write_rds(daily_confirmed, "E://Dev/R/GitHub/COVID-19-Bulgaria-v2/daily_confirmed.rds")
+write_rds(cv_data_for_plot, "E://Dev/R/GitHub/COVID-19-Bulgaria-v2/cv_data_for_plot.rds")
+write_rds(cv_data_for_plot.split, "E://Dev/R/GitHub/COVID-19-Bulgaria-v2/cv_data_for_plot.split.rds")
+write_rds(joined_df, "E://Dev/R/GitHub/COVID-19-Bulgaria-v2/joined_df.rds")
+write_rds(mortality_rate, "E://Dev/R/GitHub/COVID-19-Bulgaria-v2/mortality_rate.rds")
 
 files <- c("COVID-19-Bulgaria-v2.Rproj",                      
            "COVID-19-Bulgaria-v2.Rmd",                                          
@@ -148,7 +148,7 @@ files <- c("COVID-19-Bulgaria-v2.Rproj",
 
 library(rsconnect)
 
-deployApp(appDir   = "C://R/COVID",
+deployApp(appDir   = "E://Dev/R/GitHub/COVID-19-Bulgaria-v2",
           account  = "metodisimeonov",
           upload   = TRUE,
           appFiles = files,
